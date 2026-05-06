@@ -3,7 +3,6 @@ export const personalInfo = {
   role: "Aspiring Software Development Engineer",
   location: "India",
   email: "hello.shubham.work@gmail.com",
-  phone: "+91 8439073452",
   github: "https://github.com/Shubhamsingh-16",
 };
 
@@ -29,6 +28,7 @@ export const skills = {
 export const projects = [
   {
     title: "Samadhan Setu",
+    repoName: "samadhansetu",
     subtitle: "Problem-Solving Platform",
     problem:
       "Citizens lacked a structured, accessible way to register and track civic grievances, leading to unresolved issues and poor communication between people and authorities.",
@@ -47,6 +47,7 @@ export const projects = [
   },
   {
     title: "Fun Projects Collection",
+    repoName: "FunProjects",
     subtitle: "Frontend Experimentation Lab",
     problem:
       "Needed hands-on practice building real interactive UI components and integrating external APIs to solidify frontend fundamentals.",
@@ -65,6 +66,7 @@ export const projects = [
   },
   {
     title: "Assignments Repository",
+    repoName: "Assignments",
     subtitle: "Structured Coding Practice",
     problem:
       "Consistent, organized coding practice is essential for mastering algorithms and data structures for technical interviews.",
@@ -113,7 +115,7 @@ export const certifications = [
   {
     title: "Web Development Introduction",
     issuer: "Frontend Masters",
-    date: "Aug 2025",
+    date: "Jun 2024",
     url: "https://static.frontendmasters.com/ud/c/f86bce2d9b/yBlPKcpCER/web-development-v3.pdf",
   },
   {
@@ -125,7 +127,7 @@ export const certifications = [
   {
     title: "JavaScript First Steps",
     issuer: "Frontend Masters",
-    date: "Aug 2025",
+    date: "Jun 2024",
     url: "https://static.frontendmasters.com/ud/c/f86bce2d9b/FFUQWovrnh/javascript-first-steps.pdf",
   },
 ];

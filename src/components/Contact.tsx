@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
-import { Mail, Phone, MapPin, Github, Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { Mail, MapPin, Github, Send, CheckCircle } from 'lucide-react';
 import { personalInfo } from '../data/portfolio';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -48,29 +49,36 @@ export function Contact() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const validation = validate(form);
-
     if (Object.keys(validation).length > 0) {
       setErrors(validation);
       return;
     }
-
     setSubmitting(true);
-
-    // Simulated submission (safe + honest)
-    console.log('Form submitted:', form);
-
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      await emailjs.send(
+        'service_sycar8h',
+        'template_ojzhy5t',
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+        },
+        'zUciF2S6coce_U_RA'
+      );
       setSubmitted(true);
       setForm({ name: '', email: '', message: '' });
-    }, 800);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      alert('Failed to send message. Please email me directly.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass = (field: keyof FormErrors) =>
-    `w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border ${
-      errors[field]
-        ? 'border-red-400 dark:border-red-500'
-        : 'border-gray-200 dark:border-gray-700 focus:border-cyan-400 dark:focus:border-cyan-500'
+    `w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800 border ${errors[field]
+      ? 'border-red-400 dark:border-red-500'
+      : 'border-gray-200 dark:border-gray-700 focus:border-cyan-400 dark:focus:border-cyan-500'
     } text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 text-sm outline-none transition-colors`;
 
   return (
@@ -78,9 +86,8 @@ export function Contact() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           ref={ref}
-          className={`transition-all duration-700 ${
-            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           {/* Heading */}
           <div className="flex items-center gap-3 mb-3">
@@ -96,7 +103,7 @@ export function Contact() {
           </p>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            
+
             {/* LEFT SIDE */}
             <div>
               <h3 className="font-semibold text-gray-900 dark:text-white mb-6">
@@ -106,7 +113,6 @@ export function Contact() {
               <div className="space-y-4">
                 {[
                   { icon: Mail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}` },
-                  { icon: Phone, label: 'Phone', value: personalInfo.phone, href: `tel:${personalInfo.phone}` },
                   { icon: MapPin, label: 'Location', value: personalInfo.location, href: null },
                   { icon: Github, label: 'GitHub', value: 'Shubhamsingh-16', href: personalInfo.github },
                 ].map(({ icon: Icon, label, value, href }) => (

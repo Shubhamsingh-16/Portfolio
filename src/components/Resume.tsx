@@ -44,7 +44,7 @@ export function Resume({ onClose }: ResumeProps) {
             lineHeight: '1.4',
           }}
         >
-          
+
           {/* Name */}
           <div className="text-center mb-5 pb-4 border-b-2 border-gray-800">
             <h1 style={{ fontSize: '22pt', fontWeight: '700' }}>
@@ -148,7 +148,7 @@ export function Resume({ onClose }: ResumeProps) {
 
           {/* Certifications + Courses */}
           <div className="grid grid-cols-2 gap-6">
-            
+
             <section>
               <h2 className="font-bold border-b border-gray-800 mb-2 uppercase text-xs">
                 Certifications
